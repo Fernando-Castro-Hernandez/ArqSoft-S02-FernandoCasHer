@@ -21,6 +21,9 @@ namespace Ahorcado
             foreach (char c in _motor.PalabraSecreta)
                 Console.Write(_motor.LetrasUsadas.Contains(c) ? c : '_');
             Console.WriteLine();
+            if (_motor.MostrarPista)
+                Console.WriteLine($"Pista: la palabra empieza con '{_motor.PalabraSecreta[0]}'");
+
         }
         public char PedirLetra()
         {

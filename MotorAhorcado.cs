@@ -6,6 +6,8 @@ namespace Ahorcado
 {
     public class MotorAhorcado
     {
+        public bool MostrarPista => _intentosRestantes <= 3;
+
         private readonly string _palabraSecreta;
         private readonly List<char> _letrasUsadas = new();
         private int _intentosRestantes = 6;
