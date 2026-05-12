@@ -2,18 +2,47 @@
 using System.Collections.Generic;
 using System.Text;
 
+using System;
+using System.Collections.Generic;
+
 namespace Ahorcado
 {
+    public enum Categoria
+    {
+        Arquitectura,
+        POO,
+        NET
+    }
+
     public class PalabrasEnMemoria : IRepositorioPalabras
     {
-        private readonly List<string> _palabras = new()
+        private readonly Dictionary<Categoria, List<string>> _palabrasPorCategoria = new()
         {
-            "arquitectura","interfaz","polimorfismo","encapsulamiento","herencia"
+            [Categoria.Arquitectura] = new List<string>
+            {
+                "arquitectura", "componente", "descomposicion", "dependencia", "acoplamiento"
+            },
+            [Categoria.POO] = new List<string>
+            {
+                "polimorfismo", "encapsulamiento", "herencia", "abstraccion", "clase"
+            },
+            [Categoria.NET] = new List<string>
+            {
+                "ensamblado", "namespace", "interfaz", "delegado", "middleware"
+            }
         };
+
+        private readonly List<string> _palabrasActivas;
+        private readonly Random _random = new();
+
+        public PalabrasEnMemoria(Categoria categoria)
+        {
+            _palabrasActivas = _palabrasPorCategoria[categoria];
+        }
+
         public string ObtenerPalabraAleatoria()
         {
-            var random = new Random();
-            return _palabras[random.Next(_palabras.Count)];
+            return _palabrasActivas[_random.Next(_palabrasActivas.Count)];
         }
     }
 }

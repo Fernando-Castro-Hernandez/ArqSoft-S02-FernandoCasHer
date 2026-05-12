@@ -11,6 +11,32 @@ namespace Ahorcado
         {
             _motor = motor;
         }
+
+        public static Categoria PedirCategoria()
+        {
+            Console.Clear();
+            Console.WriteLine("=== AHORCADO ===\n");
+            Console.WriteLine("Elige una categoría:");
+            Console.WriteLine("  1) Arquitectura");
+            Console.WriteLine("  2) POO");
+            Console.WriteLine("  3) .NET");
+
+            while (true)
+            {
+                Console.Write("\nOpción (1-3): ");
+                string? entrada = Console.ReadLine();
+
+                switch (entrada)
+                {
+                    case "1": return Categoria.Arquitectura;
+                    case "2": return Categoria.POO;
+                    case "3": return Categoria.NET;
+                    default:
+                        Console.WriteLine("Opción inválida. Intenta de nuevo.");
+                        break;
+                }
+            }
+        }
         public void MostrarTablero()
         {
             Console.Clear();
