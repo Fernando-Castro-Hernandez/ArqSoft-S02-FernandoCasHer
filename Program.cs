@@ -1,30 +1,68 @@
 ﻿using Ahorcado;
 
-Categoria categoriaElegida = Ahorcado.ConsolaUI.PedirCategoria();
+Console.WriteLine("¿Qué juego quieres jugar?");
+Console.WriteLine("  1 — Ahorcado");
+Console.WriteLine("  2 — Viborita");
+Console.Write("Opción: ");
+var opcion = Console.ReadLine();
 
-var repositorio = new Ahorcado.PalabrasEnMemoria(categoriaElegida);
-var motor = new Ahorcado.MotorAhorcado(repositorio);
-var ui = new Ahorcado.ConsolaUI(motor);
-
-Console.WriteLine("===AHORCADO===");
-
-while (!motor.Ganado() && !motor.Perdido())
+if (opcion == "2")
 {
-    ui.MostrarTablero();
+    // === VIBORITA ===
+    var motor = new MotorViborita();
+    var ui = new ConsolaUIViborita(motor);
 
-    char letra = ui.PedirLetra();
+    Console.CursorVisible = false;
+    Console.Clear();
 
-    if (motor.LetraYaUsada(letra))
+    while (!motor.Ganado() && !motor.Perdido())
     {
-        ui.MostrarMensaje("Ya usaste esa letra.");
-        continue;
+        ui.MostrarTablero();
+        var tecla = ui.LeerTecla();
+
+        if (tecla == ConsoleKey.Q) break;
+        if (tecla != ConsoleKey.NoName)
+            motor.CambiarDireccion(tecla);
+
+        motor.Avanzar();
+        Thread.Sleep(150); // velocidad del juego
     }
 
-    motor.RegistrarLetra(letra);
-}
-ui.MostrarTablero();
+    ui.MostrarTablero();
+    ui.MostrarMensaje(motor.Ganado()
+        ? "\n¡Ganaste! Llegaste a 10 puntos."
+        : "\nGame over.");
 
-if (motor.Ganado())
-    ui.MostrarMensaje($"\n¡Ganaste! La palabra era: {motor.PalabraSecreta}");
+    Console.CursorVisible = true;
+}
 else
-    ui.MostrarMensaje($"\nPerdiste. La palabra era: {motor.PalabraSecreta}");
+{
+    // === AHORCADO ===
+    var categoria = ConsolaUI.PedirCategoria();
+    var repositorio = new PalabrasEnMemoria(categoria);
+    var motor = new MotorAhorcado(repositorio);
+    var ui = new ConsolaUI(motor);
+
+    while (!motor.Ganado() && !motor.Perdido())
+    {
+        ui.MostrarTablero();
+
+        char letra = ui.PedirLetra();
+
+        if (motor.LetraYaUsada(letra))
+        {
+            ui.MostrarMensaje("Ya usaste esa letra.");
+            Thread.Sleep(800);
+            continue;
+        }
+
+        motor.RegistrarLetra(letra);
+    }
+
+    ui.MostrarTablero();
+
+    if (motor.Ganado())
+        ui.MostrarMensaje($"\n¡Ganaste! La palabra era: {motor.PalabraSecreta}");
+    else
+        ui.MostrarMensaje($"\nPerdiste. La palabra era: {motor.PalabraSecreta}");
+}
