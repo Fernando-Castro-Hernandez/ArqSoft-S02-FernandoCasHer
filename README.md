@@ -1,15 +1,22 @@
-# Ahorcado
+# Ahorcado & Viborita
 
-## Un Juego sencillo escrito en C# para consola
+Dos juegos clásicos de consola escritos en C# (.NET), pensados como ejercicio de **Programación Orientada a Objetos** y **arquitectura limpia** (separación entre motor de juego y UI).
 
---- 
+## 🎮 Juegos incluidos
 
-### Diagnostico: 
-Juego tiene 4 responsabilidades mezcladas
-Las palabras están hardcodeadas en la clase
-Agregar un juego nuevo requiere modificarJuego
+- **Ahorcado**: adivina la palabra letra por letra antes de que se complete el muñeco. Incluye categorías (Arquitectura, POO, .NET) y pista automática cuando quedan pocos intentos.
+- **Viborita**: el clásico snake. Come la comida, crece y evita chocar contra las paredes o contra ti mismo. Ganas al llegar a 10 puntos.
 
-#### Principios Violados: 
-SRP — Single Responsibility Principle
-DIP — Dependency Inversion Principle
-OCP — Open/Closed Principle
+## 🚀 Cómo ejecutarlo
+
+Requisitos: [.NET 6](https://dotnet.microsoft.com/download) o superior.
+
+```bash
+git clone https://github.com/Fernando-Castro-Hernandez/ArqSoft-S02-FernandoCasHer.git
+cd ahorcado-viborita
+dotnet run
+```
+
+Al iniciar, elige `1` para Ahorcado o `2` para Viborita.
+
+## 🧱 Estructura del proyecto
