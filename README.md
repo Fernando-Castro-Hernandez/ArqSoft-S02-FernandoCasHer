@@ -19,4 +19,4 @@ dotnet run
 
 Al iniciar, elige `1` para Ahorcado o `2` para Viborita.
 
-## 🧱 Estructura del proyecto
+## Se implemento IA para poder indentar los omentarios del codigo que nos paso el maestro
