@@ -19,4 +19,15 @@ dotnet run
 
 Al iniciar, elige `1` para Ahorcado o `2` para Viborita.
 
+## 📸 Capturas
+
+### Ahorcado
+![Captura del Ahorcado](<docs/screenshots/Captura de pantalla 2026-05-13 084423.png>)
+
+### Viborita
+![Captura de la Viborita](<docs/screenshots/Captura de pantalla 2026-05-13 084621.png>)
+
+
 ## Se implemento IA para poder indentar los omentarios del codigo que nos paso el maestro
+
+
